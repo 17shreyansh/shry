@@ -11,7 +11,7 @@
 export const SITE = {
   name: "SHRY",
   url: "https://shry.in",
-  email: "", // e.g. "hello@shry.in", set when verified
+  email: "shreyansh@shry.in",
   phone: "",
   location: "",
   reach: "Working with businesses across India.",

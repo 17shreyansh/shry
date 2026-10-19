@@ -35,7 +35,7 @@ export const FOUNDER: Founder = {
     { label: "GitHub", href: "https://github.com/17shreyansh", platform: "github" },
     { label: "LinkedIn", href: "https://linkedin.com", platform: "linkedin" },
     { label: "X / Twitter", href: "https://x.com", platform: "x" },
-    { label: "Email", href: "mailto:hello@shry.in", platform: "mail" },
+    { label: "Email", href: "mailto:shreyansh@shry.in", platform: "mail" },
   ],
 };
 
