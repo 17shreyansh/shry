@@ -1,50 +1,116 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
-import { Reveal } from "@/components/Reveal";
+import { FoundersSection } from "@/components/FoundersSection";
+import { TeamSection } from "@/components/TeamSection";
 import { Sectors } from "@/components/Sectors";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "SHRY is an emerging technology company that builds, connects and manages the systems businesses depend on.",
+  title: "About Us | SHRY — Engineering & Digital Systems",
+  description:
+    "SHRY is an emerging technology and engineering studio. We build, connect, and manage the resilient systems and AI-powered workflows businesses depend on.",
   alternates: { canonical: "/about" },
 };
 
-const PRINCIPLES = [
-  ["Plain language", "You shouldn't need to speak software to make good technology decisions."],
-  ["Built to last", "Systems that can be maintained, understood and improved over time."],
-  ["Honest scope", "We say what's realistic, and what isn't, before work begins."],
+const METRICS = [
+  { value: "100%", label: "Direct Engineering", sub: "Zero outsourced layers. You speak directly with builders." },
+  { value: "99.9%", label: "Production Uptime", sub: "Fault-tolerant architecture built for continuous operations." },
+  { value: "3-in-1", label: "Full Lifecycle", sub: "We build systems, connect workflows, and operate post-launch." },
+  { value: "< 24h", label: "Direct SLA", sub: "Rapid response directly with senior technical leads." },
 ];
 
-export default function Page() {
+export default function AboutPage() {
   return (
     <>
-      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} eyebrow="About SHRY" lines={["Technology should", "work in the", "real world."]} lead="SHRY is an emerging technology company. We build, connect and manage the systems businesses depend on." visual="about" />
-      <section className="section-pad" aria-labelledby="story">
-        <div className="container grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4"><p className="label">Our approach</p><h2 id="story" className="h2 mt-5 max-w-[10ch]">Engineering, built around your business.</h2></div>
-          <div className="space-y-6 text-lg leading-relaxed text-ink/85 lg:col-span-7 lg:col-start-6">
-            <p>We started SHRY because most businesses don&apos;t need more software. They need the right software, connected to the rest of what they use, and someone who keeps it working.</p>
-            <p>So we work across the whole life of a system: building it, connecting it to your other tools, and operating it after launch. One partner, one understanding of how your business runs.</p>
-            <p>We&apos;re a young company, and we&apos;d rather show you real work and plain scope than make big claims.</p>
+      {/* Page Hero */}
+      <PageHero
+        crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+        eyebrow="ABOUT SHRY · THE ENGINEERING STUDIO"
+        lines={["Engineering systems", "built to survive the", "real world."]}
+        lead="SHRY is an engineering-first technology studio. We build reliable software, orchestrate AI-driven workflows, and operate digital systems businesses depend on."
+        visual="about"
+        actions={
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="#founder"
+              className="rounded-full bg-accent px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-obsidian transition-colors hover:bg-ink"
+            >
+              The Founder
+            </a>
+            <a
+              href="#team"
+              className="rounded-full border hairline bg-surface px-6 py-3 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-accent hover:text-accent"
+            >
+              The Team
+            </a>
+          </div>
+        }
+      />
+
+      {/* High-Impact Metrics Ribbon */}
+      <section aria-label="Key Metrics" className="border-b hairline bg-surface2">
+        <div className="container">
+          <div className="grid divide-y hairline md:grid-cols-2 md:divide-x md:divide-y-0 lg:grid-cols-4">
+            {METRICS.map((m) => (
+              <div key={m.label} className="p-8 lg:p-10">
+                <span className="font-display text-4xl font-extrabold tracking-tight text-accent lg:text-5xl">
+                  {m.value}
+                </span>
+                <p className="mt-3 font-display text-lg font-bold text-ink">
+                  {m.label}
+                </p>
+                <p className="mt-1 text-xs text-mute">
+                  {m.sub}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-      <section className="border-y hairline bg-surface" aria-label="Principles">
-        <Reveal as="ul" stagger={0.1} className="container grid gap-px py-20 md:grid-cols-3 md:gap-12 md:py-28">
-          {PRINCIPLES.map(([t, d], n) => (
-            <li key={t} className="border-t hairline pt-6"><span className="label text-accent">0{n + 1}</span><p className="mt-4 font-display text-3xl font-extrabold tracking-tight">{t}</p><p className="mt-3 text-mute">{d}</p></li>
-          ))}
-        </Reveal>
-      </section>
-      <section className="section-pad" aria-label="Technology">
-        <div className="container">
-          <p className="label">What we build with</p>
-          <ul className="mt-6 flex flex-wrap gap-2">{["Next.js", "React", "TypeScript", "Tailwind CSS"].map((t) => <li key={t} className="rounded-full border hairline px-5 py-2 font-mono text-sm">{t}</li>)}</ul>
+
+      {/* Editorial Approach Section */}
+      <section className="section-pad relative overflow-hidden bg-obsidian" aria-labelledby="approach-heading">
+        <div className="container relative z-10 grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="label flex items-center gap-3">
+              <span className="h-px w-8 bg-accent" aria-hidden />
+              Our Approach
+            </p>
+            <h2 id="approach-heading" className="h2 mt-5">
+              Engineering, built around your business.
+            </h2>
+          </div>
+          <div className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-7">
+            <p className="text-xl font-medium text-ink">
+              We started SHRY because most businesses don&apos;t need more software for the sake of software. They need the <strong className="text-accent font-semibold">right software</strong>—connected to the tools they use every day, and backed by people who keep it operating when it counts.
+            </p>
+            <p>
+              We deliberately operate as a senior engineering studio. You collaborate directly with the engineers designing your databases, writing your APIs, and maintaining your cloud infrastructure.
+            </p>
+          </div>
         </div>
       </section>
-      <Sectors />
-      <CTABand />
+
+      {/* Dedicated Founder Section */}
+      <FoundersSection />
+
+      {/* Dedicated Team Section */}
+      <TeamSection
+        variant="full"
+        eyebrow="02 / THE CORE TEAM"
+        title="The core team."
+        lead="Our core team brings together systems architecture, practical AI engineering, and interface craft under one unified standard."
+      />
+
+      {/* Sectors We Serve */}
+      <Sectors title="Industries we build & operate for" />
+
+      {/* Closing Call to Action */}
+      <CTABand
+        title="Ready to build software that actually lasts?"
+        text="Whether you need a full-scale web application, custom automation, or long-term operational support, speak directly with our engineering team."
+        label="Start an engineering inquiry"
+      />
     </>
   );
 }

@@ -3,6 +3,7 @@ import { ImageResponse } from "next/og";
 export const alt = "SHRY: we build the systems behind growing businesses";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const runtime = "edge";
 
 export default function Image() {
   return new ImageResponse(
