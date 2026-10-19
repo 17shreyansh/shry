@@ -27,7 +27,7 @@ export interface TeamMember {
 export const FOUNDER: Founder = {
   name: "Shreyansh",
   role: "Founder & Lead Systems Architect",
-  image: "/team/shreyansh.jpg",
+  image: "/team/shreyansh.jpeg",
   quote: "Software shouldn't be an ongoing operational tax. We build clean, resilient systems designed to survive the messy reality of everyday business.",
   tagline: "Directing technical strategy, cloud infrastructure, and AI engineering across every SHRY system.",
   focus: ["Systems Architecture", "High-Performance Web", "AI & Automation Pipelines"],
