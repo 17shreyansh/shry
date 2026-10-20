@@ -3,7 +3,7 @@
 import * as React from "react";
 import { gsap, MOTION_OK } from "@/lib/gsap";
 
-const STATEMENT = "Built with an engineering mindset. Designed around real business needs.";
+const STATEMENT = "One technology partner for websites, software, automation and ongoing support.";
 
 export function Credibility() {
   const root = React.useRef<HTMLElement>(null);
@@ -29,7 +29,7 @@ export function Credibility() {
           ))}
         </p>
         <div className="mt-16 grid gap-px overflow-hidden border border-obsidian/15 bg-obsidian/15 sm:grid-cols-3">
-          {[["Build", "Websites, apps and custom software."], ["Connect", "Integrations and practical automation."], ["Operate", "Hosting, maintenance and support."]].map(([t, d]) => (
+          {[["Websites & Software", "Business websites, web apps and custom software."], ["Integrations & Automation", "Connect your tools and automate repetitive work."], ["Maintenance & Support", "Hosting, updates, troubleshooting and improvements."]].map(([t, d]) => (
             <div key={t} className="bg-bone p-6">
               <p className="font-display text-2xl font-extrabold tracking-tight">{t}</p>
               <p className="mt-2 text-sm text-obsidian/65">{d}</p>
@@ -40,3 +40,4 @@ export function Credibility() {
     </section>
   );
 }
+

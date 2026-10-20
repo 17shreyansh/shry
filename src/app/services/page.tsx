@@ -10,9 +10,19 @@ import { SERVICES } from "@/content/services";
 import { GENERAL_FAQ } from "@/content/faq";
 
 export const metadata: Metadata = {
-  title: "Services",
-  description: "Build, Connect and Operate: websites and software, integrations and automation, and ongoing technical support.",
+  title: "Technology Services — Websites, Software & Automation",
+  description:
+    "End-to-end technology services: website development, custom software, workflow automation, API integrations and ongoing technical maintenance.",
   alternates: { canonical: "/services" },
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://shry.in/" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://shry.in/services" },
+  ],
 };
 
 const TONE = {
@@ -24,11 +34,12 @@ const TONE = {
 export default function Page() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
       <PageHero
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
         eyebrow="What SHRY does"
         lines={["Build it.", "Connect it.", "Keep it running."]}
-        lead="One technology partner for the whole life of your systems: from the first version to the connections between tools to the day-to-day care."
+        lead="One technology partner for the whole life of your systems: from the first version of your website or software, to the connections between tools, to day-to-day maintenance."
         visual="build"
       />
       <section aria-label="Services">
@@ -40,13 +51,13 @@ export default function Page() {
               <div className="container relative grid gap-8 py-16 md:py-24 lg:grid-cols-12">
                 <p className="label !text-current opacity-60 lg:col-span-1">{s.no}</p>
                 <div className="lg:col-span-7">
-                  <h2 className="display text-[clamp(4.5rem,15vw,14rem)]">{s.name}</h2>
+                  <h2 className="display text-[clamp(3.2rem,8vw,8rem)]">{s.shortName}</h2>
                   <p className="mt-4 text-2xl tracking-tight">{s.tagline}</p>
                   <p className={`mt-4 max-w-lg ${t.sub}`}>{s.intro}</p>
                   <ul className="mt-8 flex flex-wrap gap-2">
                     {s.includes.map((i) => <li key={i.title} className="rounded-full border border-current/30 px-4 py-1.5 text-sm">{i.title}</li>)}
                   </ul>
-                  <span className="mt-10 inline-flex items-center gap-2 text-sm font-medium underline-offset-8 group-hover:underline">Explore {s.name} <ArrowUpRight size={16} /></span>
+                  <span className="mt-10 inline-flex items-center gap-2 text-sm font-medium underline-offset-8 group-hover:underline">Explore {s.shortName} <ArrowUpRight size={16} /></span>
                 </div>
               </div>
             </Link>

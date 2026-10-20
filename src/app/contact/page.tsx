@@ -5,9 +5,19 @@ import { ContactForm } from "@/components/ContactForm";
 import { SITE } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Tell SHRY what you need. We'll help you understand the right technical approach.",
+  title: "Contact SHRY — Discuss Your Project",
+  description:
+    "Get in touch with SHRY to discuss website development, custom software, AI automation, or ongoing technical support for your business.",
   alternates: { canonical: "/contact" },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://shry.in/" },
+    { "@type": "ListItem", position: 2, name: "Contact", item: "https://shry.in/contact" },
+  ],
 };
 
 const NEXT = ["You send us a few details.", "We reply to arrange a conversation.", "We follow with a written summary and a suggested approach."];
@@ -16,6 +26,7 @@ export default function Page() {
   const details = [["Email", SITE.email, SITE.email && `mailto:${SITE.email}`], ["Phone", SITE.phone, SITE.phone && `tel:${SITE.phone}`], ["Location", SITE.location, ""]].filter(([, v]) => v);
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]} eyebrow="Start a conversation" lines={["Have something", "important to build?"]} lead="Tell us what your business needs. We'll help you understand the right technical approach." visual="contact" />
       <section className="section-pad">
         <div className="container grid gap-16 lg:grid-cols-12">

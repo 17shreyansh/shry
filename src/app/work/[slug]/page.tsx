@@ -7,13 +7,23 @@ import { Sketch } from "@/components/Sketch";
 import { Reveal } from "@/components/Reveal";
 import { CTABand } from "@/components/CTABand";
 import { PROJECTS } from "@/content/site";
+import { SERVICES } from "@/content/services";
 
 export function generateStaticParams() { return PROJECTS.map((p) => ({ slug: p.id })); }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const p = PROJECTS.find((x) => x.id === params.slug);
   if (!p) return {};
-  return { title: `${p.name} — ${p.kind}`, description: p.product, alternates: { canonical: `/work/${p.id}` } };
+  const title = `${p.name} — ${p.kind}`;
+  return {
+    title,
+    description: `${p.product} Built by SHRY.`,
+    alternates: { canonical: `/work/${p.id}` },
+    openGraph: {
+      title: `${title} | SHRY`,
+      description: p.product,
+    },
+  };
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
@@ -21,8 +31,20 @@ export default function Page({ params }: { params: { slug: string } }) {
   if (i < 0) notFound();
   const p = PROJECTS[i];
   const next = PROJECTS[(i + 1) % PROJECTS.length];
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://shry.in/" },
+      { "@type": "ListItem", position: 2, name: "Work", item: "https://shry.in/work" },
+      { "@type": "ListItem", position: 3, name: p.name, item: `https://shry.in/work/${p.id}` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PageHero
         crumbs={[{ label: "Home", href: "/" }, { label: "Work", href: "/work" }, { label: p.name }]}
         eyebrow={`${p.kind} · ${p.platform}`}
@@ -55,6 +77,27 @@ export default function Page({ params }: { params: { slug: string } }) {
             <>
               <div className="lg:col-span-4"><p className="label">Highlights</p></div>
               <ul className="space-y-3 lg:col-span-8">{p.highlights.map((h) => <li key={h} className="border-t hairline pt-3">{h}</li>)}</ul>
+            </>
+          )}
+          {p.relatedServices && p.relatedServices.length > 0 && (
+            <>
+              <div className="lg:col-span-4"><p className="label">Services involved</p></div>
+              <div className="flex flex-wrap gap-3 lg:col-span-8">
+                {p.relatedServices.map((slug) => {
+                  const s = SERVICES.find((x) => x.slug === slug);
+                  if (!s) return null;
+                  return (
+                    <Link
+                      key={slug}
+                      href={`/services/${slug}`}
+                      className="group/s inline-flex items-center gap-2 rounded-full border hairline bg-surface px-5 py-2 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+                    >
+                      <span>{s.name}</span>
+                      <ArrowUpRight size={14} className="text-mute transition-transform group-hover/s:-translate-y-0.5 group-hover/s:translate-x-0.5 group-hover/s:text-accent" />
+                    </Link>
+                  );
+                })}
+              </div>
             </>
           )}
         </div>

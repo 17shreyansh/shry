@@ -6,28 +6,38 @@ import { Sectors } from "@/components/Sectors";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "About Us | SHRY — Engineering & Digital Systems",
+  title: "About SHRY — Technology Partner for Growing Businesses",
   description:
-    "SHRY is an emerging technology and engineering studio. We build, connect, and manage the resilient systems and AI-powered workflows businesses depend on.",
+    "SHRY is a technology partner that builds websites, custom software and AI automations for businesses. Meet the team, learn our approach, and see how we work.",
   alternates: { canonical: "/about" },
 };
 
 const METRICS = [
-  { value: "100%", label: "Direct Engineering", sub: "Zero outsourced layers. You speak directly with builders." },
-  { value: "99.9%", label: "Production Uptime", sub: "Fault-tolerant architecture built for continuous operations." },
-  { value: "3-in-1", label: "Full Lifecycle", sub: "We build systems, connect workflows, and operate post-launch." },
-  { value: "< 24h", label: "Direct SLA", sub: "Rapid response directly with senior technical leads." },
+  { value: "Direct", label: "Engineering Access", sub: "You speak directly with the engineers who build your software." },
+  { value: "Full", label: "Project Lifecycle", sub: "We build, connect and support — one team for the whole journey." },
+  { value: "India", label: "Service Reach", sub: "Working with businesses across India, remotely and on-site." },
+  { value: "Open", label: "Honest Scope", sub: "We agree scope, timeline and cost in writing before work starts." },
 ];
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://shry.in/" },
+    { "@type": "ListItem", position: 2, name: "About", item: "https://shry.in/about" },
+  ],
+};
 
 export default function AboutPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {/* Page Hero */}
       <PageHero
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
-        eyebrow="ABOUT SHRY · THE ENGINEERING STUDIO"
-        lines={["Engineering systems", "built to survive the", "real world."]}
-        lead="SHRY is an engineering-first technology studio. We build reliable software, orchestrate AI-driven workflows, and operate digital systems businesses depend on."
+        eyebrow="ABOUT SHRY"
+        lines={["Technology partner", "for growing", "businesses."]}
+        lead="SHRY brings software development, systems integration, AI automation and ongoing technical support together — so businesses have one technology partner instead of managing multiple vendors."
         visual="about"
         actions={
           <div className="flex flex-wrap items-center gap-4">
@@ -47,8 +57,8 @@ export default function AboutPage() {
         }
       />
 
-      {/* High-Impact Metrics Ribbon */}
-      <section aria-label="Key Metrics" className="border-b hairline bg-surface2">
+      {/* Key Facts */}
+      <section aria-label="Key facts" className="border-b hairline bg-surface2">
         <div className="container">
           <div className="grid divide-y hairline md:grid-cols-2 md:divide-x md:divide-y-0 lg:grid-cols-4">
             {METRICS.map((m) => (
@@ -77,15 +87,15 @@ export default function AboutPage() {
               Our Approach
             </p>
             <h2 id="approach-heading" className="h2 mt-5">
-              Engineering, built around your business.
+              Built around your business, not the other way around.
             </h2>
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-7">
             <p className="text-xl font-medium text-ink">
-              We started SHRY because most businesses don&apos;t need more software for the sake of software. They need the <strong className="text-accent font-semibold">right software</strong>—connected to the tools they use every day, and backed by people who keep it operating when it counts.
+              We started SHRY because most businesses don&apos;t need more software for the sake of software. They need the <strong className="text-accent font-semibold">right software</strong> — connected to the tools they use every day, and backed by people who keep it working when it counts.
             </p>
             <p>
-              We deliberately operate as a senior engineering studio. You collaborate directly with the engineers designing your databases, writing your APIs, and maintaining your cloud infrastructure.
+              We deliberately work as a small, senior team. You collaborate directly with the engineers designing your databases, writing your APIs, and maintaining your infrastructure — not through layers of account managers.
             </p>
           </div>
         </div>
@@ -99,17 +109,17 @@ export default function AboutPage() {
         variant="full"
         eyebrow="02 / THE CORE TEAM"
         title="The core team."
-        lead="Our core team brings together systems architecture, practical AI engineering, and interface craft under one unified standard."
+        lead="Our core team brings together software development, practical AI engineering, and interface design under one unified standard."
       />
 
       {/* Sectors We Serve */}
-      <Sectors title="Industries we build & operate for" />
+      <Sectors title="Industries we've worked in" />
 
       {/* Closing Call to Action */}
       <CTABand
-        title="Ready to build software that actually lasts?"
-        text="Whether you need a full-scale web application, custom automation, or long-term operational support, speak directly with our engineering team."
-        label="Start an engineering inquiry"
+        title="Have a project in mind?"
+        text="Whether you need a business website, custom software, AI automation, or ongoing technical support — tell us what your business needs."
+        label="Discuss your project"
       />
     </>
   );

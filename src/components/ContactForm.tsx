@@ -22,10 +22,10 @@ import { SITE } from "@/content/site";
 type Status = "idle" | "sending" | "sent" | "error" | "unconfigured";
 
 const TOPICS = [
-  { id: "Build", label: "Build", desc: "Web, App or Software" },
-  { id: "AI & Automation", label: "AI & Automation", desc: "LLMs, Agents & Workflows" },
-  { id: "Connect", label: "Connect", desc: "Integrations & APIs" },
-  { id: "Operate", label: "Operate", desc: "Cloud, Maintenance & Scale" },
+  { id: "Websites & Software", label: "Websites & Software", desc: "Website, Web App or Mobile App" },
+  { id: "AI & Automation", label: "AI & Automation", desc: "Workflows & Process Automation" },
+  { id: "Integrations & APIs", label: "Integrations & APIs", desc: "Connecting Tools & Systems" },
+  { id: "Maintenance & Support", label: "Maintenance & Support", desc: "Ongoing Updates, Hosting & Care" },
   { id: "Consulting", label: "Consulting", desc: "Architecture & Advisory" },
 ];
 
@@ -39,7 +39,7 @@ export function ContactForm() {
   const params = useSearchParams();
   const initialTopic = params.get("topic") ?? "";
 
-  const [selectedTopic, setSelectedTopic] = React.useState(initialTopic);
+  const [selectedTopic, setSelectedTopic] = React.useState("Websites & Software");
   const [selectedTimeline, setSelectedTimeline] = React.useState("1-3 Months");
 
   const [formData, setFormData] = React.useState({
@@ -58,7 +58,18 @@ export function ContactForm() {
   // Sync if topic in query changes
   React.useEffect(() => {
     if (initialTopic) {
-      setSelectedTopic(initialTopic);
+      const t = initialTopic.toLowerCase();
+      if (t.includes("build") || t.includes("website") || t.includes("software")) {
+        setSelectedTopic("Websites & Software");
+      } else if (t.includes("connect") || t.includes("integrat") || t.includes("api")) {
+        setSelectedTopic("Integrations & APIs");
+      } else if (t.includes("operate") || t.includes("support") || t.includes("maint")) {
+        setSelectedTopic("Maintenance & Support");
+      } else if (t.includes("ai") || t.includes("auto")) {
+        setSelectedTopic("AI & Automation");
+      } else {
+        setSelectedTopic(initialTopic);
+      }
     }
   }, [initialTopic]);
 

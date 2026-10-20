@@ -19,7 +19,7 @@ const STEPS: readonly StepItem[] = [
     title: "Understand",
     description:
       "We start with your business and the actual problem, not a predetermined feature list.",
-    deliverable: "System Audit & Problem Framing",
+    deliverable: "A clear understanding of the problem",
     tone: "bg-surface text-ink",
     borderTone: "border-white/10",
   },
@@ -27,8 +27,8 @@ const STEPS: readonly StepItem[] = [
     number: "02",
     title: "Plan",
     description:
-      "We define an appropriate technical architecture and a lean scope that fits it.",
-    deliverable: "Architecture & Scope Blueprint",
+      "We define an appropriate solution and a scope that fits it, so you know what to expect.",
+    deliverable: "A clear plan for your project",
     tone: "bg-surface2 text-ink",
     borderTone: "border-white/15",
   },
@@ -36,8 +36,8 @@ const STEPS: readonly StepItem[] = [
     number: "03",
     title: "Build and connect",
     description:
-      "We implement the core solution and integrate the data, APIs, and systems it needs.",
-    deliverable: "Production Deployment & Integrations",
+      "We implement the solution and integrate the systems it needs, showing progress along the way.",
+    deliverable: "Your software, launched and connected",
     tone: "bg-bone text-obsidian",
     borderTone: "border-black/10",
   },
@@ -45,8 +45,8 @@ const STEPS: readonly StepItem[] = [
     number: "04",
     title: "Support and improve",
     description:
-      "Where ongoing support is agreed, we monitor performance and keep evolving the technology.",
-    deliverable: "Continuous Optimization & SLA",
+      "Where ongoing support is agreed, we keep improving the technology based on real use.",
+    deliverable: "Ongoing support and improvements",
     tone: "bg-[#1f232b] text-ink",
     borderTone: "border-white/15",
   },

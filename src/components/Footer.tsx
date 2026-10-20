@@ -11,13 +11,13 @@ export function Footer() {
       <div className="container grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Logo className="text-4xl" />
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-mute">A technology partner that builds, connects and manages the systems businesses depend on.</p>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-mute">A technology partner building business websites, custom software, automations and reliable systems for growing companies.</p>
           <p className="mt-6 max-w-sm text-xs leading-relaxed text-mute/80">{SITE.reach} {SECTORS.join(", ")}.</p>
         </div>
         <nav aria-label="Services" className="lg:col-span-2">
           <p className="label mb-4">Services</p>
           <ul className="space-y-2.5">
-            {SERVICES.map((s) => <li key={s.slug}><Link className={link} href={`/services/${s.slug}`}>{s.name}</Link></li>)}
+            {SERVICES.map((s) => <li key={s.slug}><Link className={link} href={`/services/${s.slug}`}>{s.shortName || s.name}</Link></li>)}
             <li><Link className={link} href="/ai-automation">AI &amp; Automation</Link></li>
           </ul>
         </nav>

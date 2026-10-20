@@ -19,7 +19,7 @@ export function Logo({ className = "" }: { className?: string }) {
 }
 
 const SUB = [
-  ...SERVICES.map((s) => ({ href: `/services/${s.slug}`, label: s.name, text: s.tagline })),
+  ...SERVICES.map((s) => ({ href: `/services/${s.slug}`, label: s.shortName || s.name, text: s.tagline })),
   { href: "/ai-automation", label: "AI & Automation", text: "Practical automation that keeps people in charge." },
 ];
 

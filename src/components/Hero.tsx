@@ -35,25 +35,25 @@ export function Hero() {
                     <span className="h-px w-10 bg-accent" aria-hidden /> SHRY / Technology partner
                 </p>
                 <h1 className="display">
-                    <span data-line className="mask text-[clamp(3rem,10.2vw,10.5rem)]"><span>We build the</span></span>
-                    <span data-line className="mask !mb-0 !pb-[0.2em] text-[clamp(3.6rem,15.5vw,16rem)] leading-[0.82]">
-                        <span data-sys className="outline-accent transition-colors duration-500 hover:text-accent">systems</span>
+                    <span data-line className="mask text-[clamp(2.4rem,7.6vw,7.8rem)]"><span>Websites, software &</span></span>
+                    <span data-line className="mask !mb-0 !pb-[0.2em] text-[clamp(2.8rem,11vw,11.5rem)] leading-[0.82]">
+                        <span data-sys className="outline-accent transition-colors duration-500 hover:text-accent">AI automation</span>
                     </span>
-                    <span data-line className="mask text-[clamp(1.7rem,4.6vw,4.6rem)] tracking-[-0.04em] text-ink/90"><span>behind growing businesses.</span></span>
+                    <span data-line className="mask text-[clamp(1.7rem,4.6vw,4.6rem)] tracking-[-0.04em] text-ink/90"><span>for growing businesses.</span></span>
                 </h1>
 
                 <div className="mt-10 grid items-end gap-8 lg:grid-cols-12">
                     <p data-fade className="lead lg:col-span-5">
-                        From websites and software to connected workflows and ongoing technical support, we build technology that solves real business problems.
+                        We build business websites, custom apps and software integrations. We also help maintain your technology, so your business can work better and grow with confidence.
                     </p>
                     <div data-fade className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:col-span-4">
                         <Magnetic>
                             <Button size="lg" asChild data-cursor="Talk"><Link href="/contact">
-                                Discuss a project <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                Discuss your project <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </Link></Button>
                         </Magnetic>
                         <Link href="/work" className="group inline-flex items-center gap-2 text-[0.95rem] text-mute transition-colors hover:text-ink">
-                            Explore our work <ArrowDown size={16} className="transition-transform duration-300 group-hover:translate-y-0.5" />
+                            See our work <ArrowDown size={16} className="transition-transform duration-300 group-hover:translate-y-0.5" />
                         </Link>
                     </div>
                     <p data-fade className="label hidden text-right lg:col-span-3 lg:block">

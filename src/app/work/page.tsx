@@ -8,14 +8,25 @@ import { CTABand } from "@/components/CTABand";
 import { PROJECTS } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Work",
-  description: "Selected software and websites built by SHRY.",
+  title: "Client Work & Case Studies — Software & Websites",
+  description:
+    "Explore case studies and software built by SHRY: accommodation management web apps, high-converting business websites, and tailored digital platforms.",
   alternates: { canonical: "/work" },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://shry.in/" },
+    { "@type": "ListItem", position: 2, name: "Work", item: "https://shry.in/work" },
+  ],
 };
 
 export default function Page() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Work" }]} eyebrow="Selected work" lines={["Real software,", "built and shipped."]} lead="A look at what we've built and the problems behind it." visual="work" />
       <section aria-label="Projects">
         {PROJECTS.map((p, i) => (

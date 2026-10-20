@@ -8,14 +8,44 @@ import { AI_PAGE } from "@/content/services";
 import { AI_FAQ } from "@/content/faq";
 
 export const metadata: Metadata = {
-  title: "AI & Automation",
-  description: "Practical AI and automation that removes repetitive work, with a person reviewing the output where it matters.",
+  title: "AI Automation & Workflow Integration Services",
+  description:
+    "Practical AI integrations and business workflow automation that eliminate repetitive manual tasks while keeping your team firmly in control.",
   alternates: { canonical: "/ai-automation" },
+};
+
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "AI Automation & Workflow Integration",
+  description:
+    "Practical AI integrations and business workflow automation that eliminate repetitive manual tasks while keeping your team firmly in control.",
+  provider: {
+    "@type": "Organization",
+    name: "SHRY",
+    url: "https://shry.in/",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "India",
+  },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://shry.in/" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://shry.in/services" },
+    { "@type": "ListItem", position: 3, name: "AI & Automation", item: "https://shry.in/ai-automation" },
+  ],
 };
 
 export default function Page() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PageHero
         crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "AI & Automation" }]}
         eyebrow="Practical AI"

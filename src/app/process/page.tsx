@@ -7,14 +7,25 @@ import { PROCESS_PAGE } from "@/content/services";
 import { PROCESS_FAQ } from "@/content/faq";
 
 export const metadata: Metadata = {
-  title: "Process",
-  description: "How a SHRY project runs: Understand, Plan, Build and connect, Support and improve.",
+  title: "Our Development Process — How Projects Run",
+  description:
+    "How a SHRY project runs: Understand the problem, Plan the solution, Build and connect systems, Support and improve continuously.",
   alternates: { canonical: "/process" },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://shry.in/" },
+    { "@type": "ListItem", position: 2, name: "Process", item: "https://shry.in/process" },
+  ],
 };
 
 export default function Page() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Process" }]} eyebrow="How we work" lines={["Four steps.", "No surprises."]} lead="A clear process, so you always know what's happening, what you'll get and what we need from you." visual="process" />
       <section aria-label="Phases">
         {PROCESS_PAGE.map((p, n) => (

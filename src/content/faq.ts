@@ -5,8 +5,10 @@ export const GENERAL_FAQ: QA[] = [
   { q: "How do we get started?", a: "Tell us what you need on the contact page. We'll reply to arrange a conversation, ask questions, and then propose an approach and scope in writing." },
   { q: "How is a project priced?", a: "It depends on the scope. After an initial conversation we put the scope and the cost in writing before any work starts." },
   { q: "Can you work with software we already use?", a: "Usually, yes. Connecting and improving existing tools is a core part of what we do." },
-  { q: "Do you offer support after launch?", a: "Where agreed. Support is set up as its own arrangement, so it's clear what is covered and how to reach us." },
-  { q: "Do you use AI?", a: "Where it genuinely helps, and with a person reviewing the output where it matters. If a simpler solution is better, we'll say so." },
+  { q: "Do you build custom web applications and mobile apps?", a: "Yes. We design and build responsive websites, custom web applications, customer portals, internal business platforms, and mobile apps tailored specifically to how your business operates." },
+  { q: "Who owns the code and intellectual property after launch?", a: "You do. Once delivered, all custom source code, design assets, and credentials belong 100% to your business. We provide clean documentation and direct repository handoffs." },
+  { q: "Do you offer support after launch?", a: "Yes. We provide continuous technical maintenance, hosting management, security updates, and performance monitoring under our Maintenance & Technical Support service." },
+  { q: "Do you use AI?", a: "Where it genuinely helps, and with a person reviewing the output where it matters. If a simpler deterministic solution is better, we'll recommend that instead." },
 ];
 
 export const AI_FAQ: QA[] = [

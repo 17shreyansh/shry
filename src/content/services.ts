@@ -4,6 +4,8 @@ import type { QA } from "@/content/faq";
 export type Service = {
   slug: "build" | "connect" | "operate";
   name: string;
+  /** Short buyer-recognizable label used in nav, footer, and service cards. */
+  shortName: string;
   no: string;
   tagline: string;
   headline: string[];
@@ -20,14 +22,15 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "build",
-    name: "Build",
+    name: "Websites & Software Development",
+    shortName: "Websites & Software",
     no: "01",
-    tagline: "Turn ideas into useful software.",
-    headline: ["Turn ideas into", "useful software."],
-    intro: "Websites, web applications, mobile apps and custom software, designed around how your business actually works and built so they can be maintained and improved.",
+    tagline: "Business websites, custom software, mobile apps and SaaS products.",
+    headline: ["Websites, apps &", "custom software."],
+    intro: "We build business websites, web applications, mobile apps and custom software — designed around how your business actually works and built so they can be maintained and improved over time.",
     includes: [
-      { title: "Business websites", text: "Fast, clear, search-friendly sites that explain what you do and make it easy to get in touch." },
-      { title: "Web applications", text: "Portals, dashboards and internal tools that replace spreadsheets and scattered chat threads." },
+      { title: "Business websites", text: "Fast, clear, search-friendly sites that explain what you do and make it easy for customers to get in touch." },
+      { title: "Web applications", text: "Portals, dashboards and internal tools that replace spreadsheets and scattered processes." },
       { title: "Mobile apps", text: "Apps for customers or staff, when a phone is the right place for the job." },
       { title: "SaaS products", text: "Multi-user products with accounts, roles and billing, structured to grow past the first version." },
       { title: "Custom business software", text: "Software shaped around a process that off-the-shelf tools handle badly." },
@@ -53,17 +56,18 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "connect",
-    name: "Connect",
+    name: "Integrations & Automation",
+    shortName: "Integrations & Automation",
     no: "02",
-    tagline: "Make your software work together.",
+    tagline: "Connect your business tools and automate repetitive work.",
     headline: ["Make your software", "work together."],
     intro: "APIs, integrations and practical automation that connect the tools your business already uses, so information moves on its own instead of being retyped.",
     includes: [
       { title: "APIs & integrations", text: "Reliable connections between your systems and the services you rely on." },
-      { title: "Connected business applications", text: "Your website, forms, CRM, accounting and messaging tools, sharing data instead of duplicating it." },
+      { title: "Connected business applications", text: "Your website, forms, CRM, accounting and messaging tools sharing data instead of duplicating it." },
       { title: "Workflow automation", text: "Repetitive steps handled automatically, with a person involved wherever judgement is needed." },
-      { title: "Practical AI integrations", text: "AI added to a workflow where it genuinely helps, such as sorting or drafting, with review built in." },
-      { title: "Fragmented workflow clean-up", text: "Mapping how work really flows today and removing the manual hand-offs." },
+      { title: "AI-assisted workflows", text: "AI added to a workflow where it genuinely helps — such as sorting enquiries or drafting responses — with review built in." },
+      { title: "Workflow clean-up", text: "Mapping how work really flows today and removing the manual hand-offs that slow things down." },
     ],
     fit: [
       "Your team retypes the same information into several tools.",
@@ -77,7 +81,7 @@ export const SERVICES: Service[] = [
     ],
     faq: [
       { q: "Can you connect software we already pay for?", a: "Usually. Most business tools offer ways to connect. We'll check what yours support before recommending an approach." },
-      { q: "What if one of the tools changes?", a: "Integrations need looking after. That's one reason we offer ongoing support under Operate." },
+      { q: "What if one of the tools changes?", a: "Integrations need looking after. That's one reason we offer ongoing support under our maintenance service." },
       { q: "Do you only build automations?", a: "No. If a workflow is better solved by a small custom tool or a change in process, we'll say so." },
     ],
     visual: "connect",
@@ -85,16 +89,17 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "operate",
-    name: "Operate",
+    name: "Maintenance & Technical Support",
+    shortName: "Maintenance & Support",
     no: "03",
-    tagline: "Keep your technology working.",
+    tagline: "Keep your websites and software running, updated and improving.",
     headline: ["Keep your", "technology working."],
     intro: "Maintenance, deployment, hosting and troubleshooting for the websites and applications your business depends on, plus steady improvement over time.",
     includes: [
       { title: "Maintenance & updates", text: "Regular updates and fixes so your software stays current and in good shape." },
       { title: "Deployment & hosting", text: "Setting up and managing where your software runs, and how changes reach it." },
       { title: "Troubleshooting", text: "When something breaks, someone who knows the system looks into it." },
-      { title: "Optimisation", text: "Speed, search visibility and usability improvements based on how your software is actually used." },
+      { title: "Performance improvements", text: "Speed, search visibility and usability improvements based on how your software is actually used." },
       { title: "Continuous improvement", text: "A steady list of small improvements instead of waiting for the next big project." },
     ],
     fit: [
@@ -119,10 +124,10 @@ export const SERVICES: Service[] = [
 
 export const AI_PAGE = {
   examples: [
-    { title: "Handling incoming business inquiries", how: "New messages from your website, email or forms are sorted by topic and urgency and routed to the right person.", person: "Your team decides what to do. Nothing is sent on their behalf." },
+    { title: "Handling incoming business enquiries", how: "New messages from your website, email or forms are sorted by topic and urgency and routed to the right person.", person: "Your team decides what to do. Nothing is sent on their behalf." },
     { title: "Preparing customer-response drafts", how: "A draft reply is prepared from your own service information and past answers.", person: "A person reads, edits and sends every reply that matters." },
-    { title: "Connecting form submissions to business applications", how: "Details from a form land in the right system automatically, with no retyping.", person: "Exceptions are flagged for review instead of guessed at." },
-    { title: "Automating repetitive reporting and administrative tasks", how: "Weekly numbers, reminders and routine paperwork are prepared automatically.", person: "You review the output and approve anything that goes outside the business." },
+    { title: "Connecting form submissions to business tools", how: "Details from a form land in the right system automatically, with no retyping.", person: "Exceptions are flagged for review instead of guessed at." },
+    { title: "Automating repetitive reports and admin tasks", how: "Weekly numbers, reminders and routine paperwork are prepared automatically.", person: "You review the output and approve anything that goes outside the business." },
   ],
   steps: [
     { title: "Find the workflow", text: "We look for work that is frequent, consistent and tedious. Those are the good candidates." },

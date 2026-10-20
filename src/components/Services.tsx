@@ -30,9 +30,9 @@ const Art = {
 };
 
 const BANDS = [
-  { key: "Build" as const, line: "Turn ideas into useful software.", items: ["Business websites", "Web applications", "Mobile apps", "SaaS products & custom software"], cta: "Discuss building", tone: "bg-surface2 text-ink", rule: "border-line", sub: "text-mute", btn: "bg-accent text-obsidian hover:bg-ink" },
-  { key: "Connect" as const, line: "Make your software work together.", items: ["APIs & integrations", "Connected business applications", "Practical workflow automation", "AI where it genuinely helps"], cta: "Discuss connecting", tone: "bg-[#1f232b] text-ink", rule: "border-line", sub: "text-mute", btn: "bg-accent text-obsidian hover:bg-ink" },
-  { key: "Operate" as const, line: "Keep your technology working.", items: ["Maintenance & updates", "Deployment & hosting", "Troubleshooting", "Continuous improvements"], cta: "Discuss support", tone: "bg-bone text-obsidian", rule: "border-obsidian/15", sub: "text-obsidian/65", btn: "bg-obsidian text-ink hover:bg-accent hover:text-obsidian" },
+  { key: "Build" as const, display: "Websites & Software", line: "Business websites, custom software, mobile apps and SaaS products.", items: ["Business websites", "Web applications", "Mobile apps", "SaaS products & custom software"], cta: "Explore website & software development", tone: "bg-surface2 text-ink", rule: "border-line", sub: "text-mute", btn: "bg-accent text-obsidian hover:bg-ink" },
+  { key: "Connect" as const, display: "Integrations & Automation", line: "Connect your business tools and automate repetitive work.", items: ["APIs & integrations", "Connected business tools", "Workflow automation", "AI where it genuinely helps"], cta: "Explore integrations & automation", tone: "bg-[#1f232b] text-ink", rule: "border-line", sub: "text-mute", btn: "bg-accent text-obsidian hover:bg-ink" },
+  { key: "Operate" as const, display: "Maintenance & Support", line: "Keep your websites and software running, updated and improving.", items: ["Maintenance & updates", "Deployment & hosting", "Troubleshooting", "Continuous improvements"], cta: "Explore maintenance & support", tone: "bg-bone text-obsidian", rule: "border-obsidian/15", sub: "text-obsidian/65", btn: "bg-obsidian text-ink hover:bg-accent hover:text-obsidian" },
 ];
 
 export function Services() {
@@ -42,7 +42,7 @@ export function Services() {
     <section id="services" aria-labelledby="services-h" className="bg-obsidian">
       <div className="container pb-14 pt-[var(--pad-section)]">
         <p className="label">What SHRY does</p>
-        <h2 id="services-h" className="h2 mt-6 max-w-[14ch]">Build it. Connect it. Keep it running.</h2>
+        <h2 id="services-h" className="h2 mt-6 max-w-[18ch]">Websites, integrations and ongoing support — one technology partner.</h2>
       </div>
 
       <div className="flex flex-col lg:h-[82vh] lg:min-h-[34rem] lg:flex-row">
@@ -62,7 +62,7 @@ export function Services() {
               )}
             >
               <span className={cn("label !text-current opacity-60")}>0{i + 1} / 03</span>
-              <h3 className="display mt-4 text-[clamp(4.5rem,18vw,8rem)] lg:absolute lg:left-8 lg:top-24 lg:mt-0 lg:text-[clamp(5rem,9.5vw,10rem)] lg:[writing-mode:vertical-rl] lg:rotate-180">{b.key}</h3>
+              <h3 className="display mt-4 text-[clamp(2.8rem,10vw,5rem)] lg:absolute lg:left-8 lg:top-24 lg:mt-0 lg:text-[clamp(2.6rem,4.8vw,4.2rem)] lg:[writing-mode:vertical-rl] lg:rotate-180">{b.display}</h3>
 
               <div className={cn("mt-8 transition-all duration-500 lg:absolute lg:inset-y-10 lg:left-[min(18vw,15rem)] lg:right-10 lg:mt-0 lg:flex lg:flex-col lg:justify-end", open ? "lg:translate-x-0 lg:opacity-100 lg:delay-200" : "lg:pointer-events-none lg:translate-x-6 lg:opacity-0")}>
                 <div className="mb-8 hidden h-40 w-56 opacity-90 lg:block"><A /></div>

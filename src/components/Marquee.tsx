@@ -1,4 +1,4 @@
-const WORDS = ["Build", "Connect", "Operate", "Websites", "Software", "Integrations", "Automation", "Support"];
+const WORDS = ["Websites", "Software", "Mobile Apps", "Integrations", "Automation", "Maintenance", "Support", "AI"];
 
 export function Marquee({ tone = "dark", className = "" }: { tone?: "dark" | "paper"; className?: string }) {
   const row = (
@@ -13,7 +13,7 @@ export function Marquee({ tone = "dark", className = "" }: { tone?: "dark" | "pa
   );
   return (
     <div className={`marquee overflow-hidden border-y py-5 ${tone === "paper" ? "border-obsidian/15 bg-bone text-obsidian" : "hairline bg-obsidian text-ink"} ${className}`}>
-      <p className="sr-only">Build, connect, operate: websites, software, integrations, automation and support.</p>
+      <p className="sr-only">Websites, software, mobile apps, integrations, automation, maintenance, support and AI.</p>
       <div className="marquee-track">{row}{row}</div>
     </div>
   );
