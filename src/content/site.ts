@@ -14,7 +14,7 @@ export const SITE = {
   tagline: "Websites, software and AI automation for growing businesses.",
   description: "SHRY builds business websites, custom software, web apps and AI automations — with integrations and ongoing technical support for growing businesses across India.",
   email: "shreyansh@shry.in",
-  phone: "",
+  phone: "+91 7017828192",
   location: "",
   reach: "Working with businesses across India.",
   socials: [] as { label: string; href: string }[],

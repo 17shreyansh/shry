@@ -31,6 +31,7 @@ const jsonLd = {
   url: SITE.url + "/",
   description: SITE.description,
   email: SITE.email || undefined,
+  telephone: SITE.phone || undefined,
   areaServed: {
     "@type": "Country",
     name: "India",

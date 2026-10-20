@@ -23,7 +23,11 @@ const breadcrumbJsonLd = {
 const NEXT = ["You send us a few details.", "We reply to arrange a conversation.", "We follow with a written summary and a suggested approach."];
 
 export default function Page() {
-  const details = [["Email", SITE.email, SITE.email && `mailto:${SITE.email}`], ["Phone", SITE.phone, SITE.phone && `tel:${SITE.phone}`], ["Location", SITE.location, ""]].filter(([, v]) => v);
+  const details = [
+    ["Email", SITE.email, SITE.email && `mailto:${SITE.email}`],
+    ["Phone", SITE.phone, SITE.phone && `tel:${SITE.phone.replace(/\s/g, "")}`],
+    ["Location", SITE.location, ""],
+  ].filter(([, v]) => v);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />

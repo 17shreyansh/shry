@@ -482,8 +482,8 @@ export function ContactForm() {
           )}
         </Button>
 
-        <div className="flex items-center gap-2 text-xs text-mute">
-          <span>Prefer direct email?</span>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-mute">
+          <span>Prefer direct contact?</span>
           <button
             type="button"
             onClick={handleCopyEmail}
@@ -493,6 +493,17 @@ export function ContactForm() {
             <Copy size={11} className="opacity-70" />
           </button>
           {copiedEmail && <span className="text-[0.68rem] text-accent font-mono animate-fade">Copied!</span>}
+          {SITE.phone && (
+            <>
+              <span>·</span>
+              <a
+                href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                className="font-mono text-ink underline underline-offset-4 hover:text-accent transition-colors"
+              >
+                {SITE.phone}
+              </a>
+            </>
+          )}
         </div>
       </div>
     </form>
