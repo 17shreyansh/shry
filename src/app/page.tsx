@@ -10,10 +10,13 @@ import { Sectors } from "@/components/Sectors";
 import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
 import { GENERAL_FAQ } from "@/content/faq";
+import Script from 'next/script';
+
 
 export default function Page() {
   return (
     <>
+      <Script src="https://cdn.leadora.in/l.js" data-site="ls_gyO7TLhGKhDHXE8B" strategy="afterInteractive" />
       <Hero />
       <Credibility />
       <Services />
