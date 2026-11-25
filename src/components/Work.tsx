@@ -67,7 +67,7 @@ function Panel({ p, i }: { p: Project; i: number }) {
               <span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" />
             </div>
             <div className="aspect-[8/5]">
-              {p.image ? <img src={p.image} alt={`${p.name} interface`} loading="lazy" className="h-full w-full object-cover object-top" /> : <Sketch variant={p.variant} />}
+              {p.image ? <img src={p.image} alt={`${p.name} — screenshot`} loading="lazy" decoding="async" className="h-full w-full object-cover object-top" /> : <Sketch variant={p.variant} />}
             </div>
           </div>
           {!p.image && <p className="label mt-3 text-[0.65rem]">Illustrative interface — project screenshots coming soon</p>}
@@ -76,8 +76,13 @@ function Panel({ p, i }: { p: Project; i: number }) {
         <div>
           <p className="label flex items-center gap-3"><span className="text-accent">{idx}</span> {p.kind}</p>
           <h3 className="display mt-4 text-[clamp(3rem,6.4vw,6.6rem)]">{p.name}</h3>
+          {(p.ownedBy || p.client) && (
+            <p className="mt-5 inline-flex flex-wrap items-center gap-2 rounded-full border hairline px-4 py-1.5 text-xs text-mute">
+              {p.ownedBy ? <>A product of <span className="text-ink">{p.ownedBy.name}</span> · built by <span className="text-accent">Shreyansh</span></> : <>Built for <span className="text-ink">{p.client}</span> · {p.platform}</>}
+            </p>
+          )}
           <dl className="mt-8 divide-y hairline border-y hairline">
-            {[["The product", p.product], ["The problem", p.problem], ["What SHRY did", p.contribution]].map(([k, v]) => (
+            {[["The product", p.product], ["The problem", p.problem], [p.contributionLabel ?? "What SHRY did", p.contribution]].map(([k, v]) => (
               <div key={k} className="grid gap-1 py-4 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
                 <dt className="label pt-0.5">{k}</dt>
                 <dd className="text-[0.95rem] leading-relaxed text-ink/90">{v}</dd>

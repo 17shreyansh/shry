@@ -142,6 +142,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <Link key={p.id} href={`/work/${p.id}`} className="group block rounded-2xl border hairline p-8 transition-colors hover:bg-surface">
                   <p className="label text-accent">{p.kind} · {p.platform}</p>
                   <h3 className="mt-3 font-display text-3xl font-bold tracking-tight transition-transform duration-300 group-hover:translate-x-2">{p.name}</h3>
+                  {p.ownedBy && <p className="mt-2 text-xs text-mute">A product of {p.ownedBy.name} · built by Shreyansh</p>}
                   <p className="mt-3 text-mute">{p.product}</p>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm text-accent">Read case study <ArrowUpRight size={14} /></span>
                 </Link>

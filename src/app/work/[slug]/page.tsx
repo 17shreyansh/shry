@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Sketch } from "@/components/Sketch";
 import { Reveal } from "@/components/Reveal";
+import { Gallery } from "@/components/Gallery";
 import { CTABand } from "@/components/CTABand";
 import { PROJECTS } from "@/content/site";
 import { SERVICES } from "@/content/services";
@@ -17,11 +18,12 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const title = `${p.name} — ${p.kind}`;
   return {
     title,
-    description: `${p.product} Built by SHRY.`,
+    description: p.ownedBy ? `${p.product} A product of ${p.ownedBy.name}, built by Shreyansh (SHRY).` : `${p.product} Built by SHRY.`,
     alternates: { canonical: `/work/${p.id}` },
     openGraph: {
       title: `${title} | SHRY`,
       description: p.product,
+      ...(p.image ? { images: [{ url: p.image, width: 1440, height: 900, alt: `${p.name} screenshot` }] } : {}),
     },
   };
 }
@@ -51,27 +53,100 @@ export default function Page({ params }: { params: { slug: string } }) {
         lines={[p.name]}
         lead={p.product}
         visual="work"
-        actions={p.url ? <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-obsidian">Visit {p.name} <ArrowUpRight size={16} /></a> : undefined}
+        actions={(p.url || p.links?.length) ? (
+          <>
+            {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-obsidian transition-colors hover:bg-ink">Visit {p.name} <ArrowUpRight size={16} /></a>}
+            {p.links?.map((l) => (
+              <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border hairline px-6 py-3 text-sm transition-colors hover:border-accent hover:text-accent">{l.label} <ArrowUpRight size={16} /></a>
+            ))}
+          </>
+        ) : undefined}
       />
+      <section aria-label="Project facts" className="border-b hairline">
+        <dl className="container grid grid-cols-2 gap-px py-8 md:grid-cols-4">
+          {([
+            p.ownedBy ? ["Product of", p.ownedBy.name] : p.client ? ["Client", p.client] : ["Built by", "SHRY"],
+            p.ownedBy ? ["Built by", "Shreyansh"] : ["Type", p.kind],
+            ["Platform", p.platform],
+            ["Status", p.url ? "Live" : "Delivered"],
+          ] as [string, string][]).map(([k, v]) => (
+            <div key={k} className="py-3 pr-4">
+              <dt className="label">{k}</dt>
+              <dd className="mt-2 flex items-center gap-2 text-[0.95rem]">{k === "Status" && p.url && <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_12px_#BFEA5A]" aria-hidden />}{v}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+      {p.ownedBy && (
+        <section aria-label="Ownership" className="border-b hairline bg-surface">
+          <div className="container flex flex-col gap-3 py-8 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-3xl text-[0.95rem] leading-relaxed text-ink/90"><span className="label mr-3 text-accent">Credit</span>{p.ownedBy.note}</p>
+            {p.ownedBy.href && <a href={p.ownedBy.href} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center gap-2 text-sm text-accent underline-offset-8 hover:underline">About {p.ownedBy.name} <ArrowUpRight size={16} /></a>}
+          </div>
+        </section>
+      )}
       <section className="section-pad">
         <div className="container">
-          <div className="overflow-hidden rounded-2xl border hairline bg-surface shadow-[0_40px_120px_-30px_rgba(191,234,90,0.18)]">
-            <div className="flex gap-1.5 border-b hairline px-4 py-3" aria-hidden><span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" /></div>
-            <div className="aspect-[8/5]">{p.image ? <img src={p.image} alt={`${p.name} interface`} className="h-full w-full object-cover object-top" /> : <Sketch variant={p.variant} />}</div>
+          <div className="relative lg:pr-24">
+            <div className="overflow-hidden rounded-2xl border hairline bg-surface shadow-[0_40px_120px_-30px_rgba(191,234,90,0.18)]">
+              <div className="flex gap-1.5 border-b hairline px-4 py-3" aria-hidden><span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" /></div>
+              <div className="aspect-[8/5]">{p.image ? <img src={p.image} alt={`${p.name} — desktop screenshot`} className="h-full w-full object-cover object-top" /> : <Sketch variant={p.variant} />}</div>
+            </div>
+            {p.mobile && (
+              <div className="absolute -bottom-10 right-0 hidden w-[19%] min-w-[180px] max-w-[260px] rounded-[2.2rem] border-[6px] border-surface2 bg-obsidian p-1 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] ring-1 ring-line lg:block">
+                <div className="overflow-hidden rounded-[1.7rem]"><img src={p.mobile} alt={`${p.name} — mobile screenshot`} loading="lazy" className="aspect-[390/780] w-full object-cover object-top" /></div>
+              </div>
+            )}
           </div>
           {!p.image && <p className="label mt-3 text-[0.65rem]">Illustrative interface — project screenshots coming soon</p>}
         </div>
       </section>
+      {p.stats && p.stats.length > 0 && (
+        <section aria-label="Key facts" className="border-t hairline">
+          <Reveal stagger={0.08} className="container grid gap-px py-16 sm:grid-cols-2 md:py-20 lg:grid-cols-4">
+            {p.stats.map((st) => (
+              <div key={st.label} className="border-t hairline py-6 pr-6">
+                <p className="display text-[clamp(3rem,6vw,5.5rem)] text-accent">{st.value}</p>
+                <p className="mt-4 max-w-[16rem] text-sm leading-relaxed text-mute">{st.label}</p>
+              </div>
+            ))}
+          </Reveal>
+        </section>
+      )}
       <section className="border-y hairline">
         <Reveal stagger={0.12} className="container grid gap-px py-20 md:py-28 lg:grid-cols-3 lg:gap-14">
-          {[["The problem", p.problem], ["The product", p.product], ["What SHRY did", p.contribution]].map(([k, v]) => (
+          {[["The problem", p.problem], ["The product", p.product], [p.contributionLabel ?? "What SHRY did", p.contribution]].map(([k, v]) => (
             <div key={k} className="border-t hairline pt-6"><p className="label text-accent">{k}</p><p className="mt-4 text-[clamp(1.3rem,2.2vw,1.9rem)] leading-snug tracking-tight">{v}</p></div>
           ))}
         </Reveal>
       </section>
-      <section className="section-pad">
+      {p.story && p.story.length > 0 && (
+        <section className="section-pad" aria-labelledby="overview-h">
+          <div className="container grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4"><p id="overview-h" className="label">Overview</p></div>
+            <Reveal stagger={0.1} className="space-y-6 lg:col-span-8">
+              {p.story.map((para) => <p key={para.slice(0, 32)} className="text-[clamp(1.1rem,1.6vw,1.4rem)] leading-relaxed text-ink/90">{para}</p>)}
+            </Reveal>
+          </div>
+        </section>
+      )}
+      {p.gallery && p.gallery.length > 0 && (
+        <section className="section-pad border-t hairline" aria-labelledby="gallery-h">
+          <div className="container">
+            <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="label">Inside the product</p>
+                <h2 id="gallery-h" className="h2 mt-5">Screens from {p.name}.</h2>
+              </div>
+              <p className="label">Real screenshots · click to enlarge</p>
+            </div>
+            <Gallery name={p.name} shots={p.gallery.filter((g) => g.src !== p.image)} />
+          </div>
+        </section>
+      )}
+      <section className="section-pad border-t hairline">
         <div className="container grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4"><p className="label">Our role</p></div>
+          <div className="lg:col-span-4"><p className="label">{p.ownedBy ? "My role" : "Our role"}</p></div>
           <ul className="flex flex-wrap gap-2 lg:col-span-8">{p.role.map((r) => <li key={r} className="rounded-full border hairline px-5 py-2 text-sm">{r}</li>)}</ul>
           {p.highlights && p.highlights.length > 0 && (
             <>
