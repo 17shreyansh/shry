@@ -50,7 +50,7 @@ export function PageHero({
   const last = lines.length - 1;
 
   return (
-    <section ref={root} className="relative overflow-hidden border-b hairline bg-obsidian">
+    <section ref={root} data-world="off" className="relative overflow-hidden border-b hairline bg-obsidian">
       {visual && <HeroScene variant="page" shape={SHAPE[visual]} tint={tint} />}
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(8,9,11,0.88)_0%,rgba(8,9,11,0.45)_50%,transparent_75%)] max-md:bg-[linear-gradient(0deg,rgba(8,9,11,0.96)_30%,rgba(8,9,11,0.5)_75%,transparent)]" />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian to-transparent" />

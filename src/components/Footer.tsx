@@ -7,7 +7,7 @@ const link = "text-sm text-mute transition-colors hover:text-ink";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-obsidian">
+    <footer data-scene="text" className="relative z-[1] overflow-hidden">
       <div className="container grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Logo className="text-4xl" />
@@ -42,7 +42,7 @@ export function Footer() {
         <p>© {new Date().getFullYear()} SHRY. All rights reserved.</p>
         <p className="flex gap-6"><Link href="/privacy" className="transition-colors hover:text-ink">Privacy</Link><Link href="/terms" className="transition-colors hover:text-ink">Terms</Link></p>
       </div>
-      <p aria-hidden className="display pointer-events-none -mb-[0.16em] select-none text-center text-[clamp(9rem,38vw,40rem)] leading-[0.74] tracking-[-0.07em] text-surface2">SHRY</p>
+      <p aria-hidden className="display pointer-events-none -mb-[0.16em] select-none text-center text-[clamp(7rem,26vw,26rem)] leading-[0.74] tracking-[-0.07em] text-transparent">SHRY</p>
     </footer>
   );
 }

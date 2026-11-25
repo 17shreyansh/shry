@@ -39,7 +39,7 @@ export function Services() {
   const [active, setActive] = React.useState(0);
 
   return (
-    <section id="services" aria-labelledby="services-h" className="bg-obsidian">
+    <section id="services" aria-labelledby="services-h" data-scene="rings">
       <div className="container pb-14 pt-[var(--pad-section)]">
         <p className="label">What SHRY does</p>
         <h2 id="services-h" className="h2 mt-6 max-w-[18ch]">Build it, connect it, <em className="serif text-accent">keep it running.</em></h2>

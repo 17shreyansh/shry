@@ -3,7 +3,7 @@ import { HeroScene } from "@/components/HeroScene";
 
 export default function NotFound() {
   return (
-    <section className="relative overflow-hidden bg-obsidian">
+    <section data-world="off" className="relative overflow-hidden bg-obsidian">
       <HeroScene variant="page" shape="ring" />
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(8,9,11,0.88)_0%,rgba(8,9,11,0.45)_50%,transparent_75%)] max-md:bg-[linear-gradient(0deg,rgba(8,9,11,0.96)_30%,rgba(8,9,11,0.5)_75%,transparent)]" />
       <div className="container relative z-10 flex min-h-[90svh] flex-col justify-end py-32">

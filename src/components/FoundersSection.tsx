@@ -41,7 +41,7 @@ function SocialIcon({ platform }: { platform: string }) {
 
 export function FoundersSection() {
   return (
-    <section id="founder" aria-labelledby="founder-h" className="section-pad relative overflow-hidden bg-obsidian border-t hairline">
+    <section id="founder" aria-labelledby="founder-h" data-scene="globe" className="section-pad relative overflow-hidden border-t hairline">
       <div className="container relative z-10">
         
         {/* Section Header */}

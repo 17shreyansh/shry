@@ -25,7 +25,7 @@
   html.lenis, html.lenis body { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
   .lenis.lenis-stopped { overflow: hidden; }
-  body { @apply font-sans antialiased; background: var(--obsidian); overflow-x: hidden; }
+  body { @apply font-sans antialiased; background: transparent; overflow-x: hidden; }
   ::selection { background: var(--accent); color: var(--obsidian); }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
   html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor [role="button"] { cursor: none; }
@@ -95,3 +95,14 @@
   main > section:not(#top), main > article { transform: skewY(calc(var(--sv) * 0.9deg)); }
 }
 main .outline-text, main .outline-accent { text-shadow: none !important; }
+
+/* 3D word reveal (Interactions) */
+.w3d { display: inline-block; perspective: 600px; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.w3d > span { display: inline-block; transform-origin: 50% 100%; will-change: transform; }
+/* glass-card tilt glare (Interactions) */
+.glass-tilt { position: relative; transform-style: preserve-3d; }
+.glass-tilt::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.10), rgba(191, 234, 90, 0.05) 35%, transparent 60%);
+  opacity: var(--gl, 0); transition: opacity 0.4s ease; mix-blend-mode: screen;
+}

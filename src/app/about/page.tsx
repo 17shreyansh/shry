@@ -79,7 +79,7 @@ export default function AboutPage() {
       </section>
 
       {/* Editorial Approach Section */}
-      <section className="section-pad relative overflow-hidden bg-obsidian" aria-labelledby="approach-heading">
+      <section data-scene="wave" className="section-pad relative overflow-hidden" aria-labelledby="approach-heading">
         <div className="container relative z-10 grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="label flex items-center gap-3">

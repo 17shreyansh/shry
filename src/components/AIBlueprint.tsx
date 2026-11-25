@@ -81,7 +81,7 @@ export function AIBlueprint() {
     : "";
 
   return (
-    <section id="blueprint" ref={root} aria-labelledby="bp-h" className="relative overflow-hidden border-t hairline bg-obsidian">
+    <section id="blueprint" ref={root} aria-labelledby="bp-h" data-scene="grid" className="relative overflow-hidden border-t hairline">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(70%_60%_at_50%_30%,#000,transparent)]" />
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[40rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]" />
 

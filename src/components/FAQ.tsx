@@ -14,7 +14,7 @@ export function FAQ({ items, title = "Questions, answered." }: { items: QA[]; ti
   };
 
   return (
-    <section className="section-pad border-t hairline" aria-label="Frequently asked questions">
+    <section data-scene="helix" className="section-pad border-t hairline" aria-label="Frequently asked questions">
       <div className="container grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <p className="label">FAQ</p>

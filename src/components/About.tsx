@@ -24,7 +24,7 @@ export function About() {
   }, []);
 
   return (
-    <section id="about" ref={root} className="section-pad relative overflow-hidden bg-obsidian">
+    <section id="about" ref={root} data-scene="globe" className="section-pad relative overflow-hidden">
       <div className="container relative">
         <p className="label">About SHRY</p>
         <h2 data-about className="display mt-8 max-w-[14ch] text-[clamp(3rem,9vw,9rem)]">

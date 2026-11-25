@@ -177,7 +177,8 @@ export function TeamSection({
     <section
       id="team"
       aria-labelledby="team-h"
-      className="section-pad relative overflow-hidden border-t hairline bg-surface"
+      data-scene="rings"
+      className="section-pad relative overflow-hidden border-t hairline bg-surface/40 backdrop-blur-[2px]"
     >
       <div className="container relative z-10">
         {/* Section Header with Slider Controls */}

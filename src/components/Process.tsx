@@ -134,7 +134,8 @@ export function Process() {
       id="process"
       ref={root}
       aria-labelledby="process-heading"
-      className="bg-obsidian pb-24 pt-[var(--pad-section)]"
+      data-scene="helix"
+      className="pb-24 pt-[var(--pad-section)]"
     >
       <div className="container">
         {/* Section Header */}

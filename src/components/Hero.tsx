@@ -53,7 +53,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="top" ref={root} aria-label="Introduction" className="relative h-[320vh] bg-obsidian motion-reduce:h-auto">
+    <section id="top" ref={root} data-world="off" aria-label="Introduction" className="relative h-[320vh] bg-obsidian motion-reduce:h-auto">
       <div className="sticky top-0 flex h-[100svh] flex-col overflow-hidden motion-reduce:relative">
         <HeroDome progress={progress} />
         {/* legibility gradients */}

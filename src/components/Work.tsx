@@ -114,7 +114,7 @@ export function Work({ intro = true, outro = true }: { intro?: boolean; outro?: 
   }, []);
 
   return (
-    <section id="work" ref={root} aria-labelledby="work-h" className="relative bg-obsidian">
+    <section id="work" ref={root} aria-labelledby="work-h" data-scene="tunnel" className="relative">
       {intro && <div className="container pb-8 pt-[var(--pad-section)]">
         <div className="grid items-end gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8">
