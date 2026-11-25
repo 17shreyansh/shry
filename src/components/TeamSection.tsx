@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { AccentLast } from "@/components/Accent";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
@@ -187,7 +188,7 @@ export function TeamSection({
               {eyebrow}
             </p>
             <h2 id="team-h" className="h2 mt-6">
-              {title}
+              <AccentLast text={title} />
             </h2>
             <p className="lead mt-4 text-sm md:text-base">{lead}</p>
           </div>

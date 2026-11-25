@@ -51,7 +51,7 @@ export function FoundersSection() {
             01 / LEADERSHIP
           </p>
           <h2 id="founder-h" className="h2 mt-6">
-            Directed by hands-on engineering.
+            Directed by <em className="serif text-accent">hands-on engineering.</em>
           </h2>
         </div>
 

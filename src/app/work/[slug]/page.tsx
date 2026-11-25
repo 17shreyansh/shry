@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { Sketch } from "@/components/Sketch";
 import { Reveal } from "@/components/Reveal";
 import { Gallery } from "@/components/Gallery";
+import { TiltIn } from "@/components/TiltIn";
 import { CTABand } from "@/components/CTABand";
 import { PROJECTS } from "@/content/site";
 import { SERVICES } from "@/content/services";
@@ -53,6 +54,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         lines={[p.name]}
         lead={p.product}
         visual="work"
+        tint={p.tint}
         actions={(p.url || p.links?.length) ? (
           <>
             {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-obsidian transition-colors hover:bg-ink">Visit {p.name} <ArrowUpRight size={16} /></a>}
@@ -87,8 +89,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       )}
       <section className="section-pad">
         <div className="container">
-          <div className="relative lg:pr-24">
-            <div className="overflow-hidden rounded-2xl border hairline bg-surface shadow-[0_40px_120px_-30px_rgba(191,234,90,0.18)]">
+          <TiltIn glow={p.tint} className="lg:pr-24">
+            <div className="overflow-hidden rounded-2xl border hairline bg-surface shadow-[0_60px_160px_-40px_rgba(0,0,0,0.9)]">
               <div className="flex gap-1.5 border-b hairline px-4 py-3" aria-hidden><span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" /><span className="h-2 w-2 rounded-full bg-line" /></div>
               <div className="aspect-[8/5]">{p.image ? <img src={p.image} alt={`${p.name} — desktop screenshot`} className="h-full w-full object-cover object-top" /> : <Sketch variant={p.variant} />}</div>
             </div>
@@ -97,7 +99,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <div className="overflow-hidden rounded-[1.7rem]"><img src={p.mobile} alt={`${p.name} — mobile screenshot`} loading="lazy" className="aspect-[390/780] w-full object-cover object-top" /></div>
               </div>
             )}
-          </div>
+          </TiltIn>
           {!p.image && <p className="label mt-3 text-[0.65rem]">Illustrative interface — project screenshots coming soon</p>}
         </div>
       </section>

@@ -87,7 +87,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
       <section className="section-pad" aria-labelledby="inc">
         <div className="container grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4"><p className="label">What&apos;s included</p><h2 id="inc" className="h2 mt-5 max-w-[10ch]">The work, in detail.</h2></div>
+          <div className="lg:col-span-4"><p className="label">What&apos;s included</p><h2 id="inc" className="h2 mt-5 max-w-[10ch]">The work, in <em className="serif text-accent">detail.</em></h2></div>
           <Reveal as="ul" stagger={0.08} className="divide-y border-y hairline lg:col-span-8">
             {s.includes.map((x, n) => (
               <li key={x.title} className="grid gap-2 py-7 md:grid-cols-[3rem_1fr_1.4fr] md:gap-6">
@@ -102,7 +102,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
       <section className="bg-bone text-obsidian" aria-labelledby="fit">
         <div className="container grid gap-12 py-24 md:py-32 lg:grid-cols-12">
-          <div className="lg:col-span-4"><p className="label !text-obsidian/60">Is this for you?</p><h2 id="fit" className="h2 mt-5 max-w-[9ch]">A good fit when…</h2></div>
+          <div className="lg:col-span-4"><p className="label !text-obsidian/60">Is this for you?</p><h2 id="fit" className="h2 mt-5 max-w-[9ch]">A good fit <em className="serif">when…</em></h2></div>
           <Reveal as="ul" stagger={0.1} className="space-y-6 lg:col-span-8">
             {s.fit.map((f) => <li key={f} className="border-t border-obsidian/20 pt-6 text-[clamp(1.4rem,2.8vw,2.4rem)] font-medium leading-tight tracking-tight">{f}</li>)}
           </Reveal>
@@ -112,7 +112,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <section className="section-pad" aria-labelledby="how">
         <div className="container">
           <p className="label">How it works</p>
-          <h2 id="how" className="h2 mt-5">Three steps, no surprises.</h2>
+          <h2 id="how" className="h2 mt-5">Three steps, <em className="serif text-accent">no surprises.</em></h2>
           <Reveal as="ol" stagger={0.12} className="mt-14 grid gap-px overflow-hidden rounded-2xl border hairline bg-line md:grid-cols-3">
             {s.steps.map((x, n) => (
               <li key={x.title} className="bg-obsidian p-8 md:p-10">
@@ -136,7 +136,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         <section className="section-pad border-t hairline" aria-labelledby="related-work">
           <div className="container">
             <p className="label">Related work</p>
-            <h2 id="related-work" className="h2 mt-5">Projects using {s.shortName.toLowerCase()}.</h2>
+            <h2 id="related-work" className="h2 mt-5">Projects using <em className="serif text-accent">{s.shortName.toLowerCase()}.</em></h2>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {relatedProjects.map((p) => (
                 <Link key={p.id} href={`/work/${p.id}`} className="group block rounded-2xl border hairline p-8 transition-colors hover:bg-surface">

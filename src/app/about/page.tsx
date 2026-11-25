@@ -87,7 +87,7 @@ export default function AboutPage() {
               Our Approach
             </p>
             <h2 id="approach-heading" className="h2 mt-5">
-              Built around your business, not the other way around.
+              Built around your business, <em className="serif text-accent">not the other way around.</em>
             </h2>
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-7">

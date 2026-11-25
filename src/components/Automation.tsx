@@ -51,7 +51,7 @@ export function Automation() {
       <div className="container relative grid gap-14 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-6">
           <p className="label">Practical AI &amp; automation</p>
-          <h2 className="h2 mt-6 max-w-[11ch]">Less repetitive work. Better-connected systems.</h2>
+          <h2 className="h2 mt-6 max-w-[11ch]">Less repetitive work. <em className="serif text-accent">Better-connected systems.</em></h2>
           <p className="lead mt-6">We help businesses find the workflows worth automating, then connect AI and your existing software to handle them.</p>
           <ul className="mt-9 space-y-3">
             {EXAMPLES.map((e) => <li data-ex key={e} className="flex gap-3 text-[0.98rem]"><span className="mt-2.5 h-px w-5 shrink-0 bg-accent" aria-hidden />{e}</li>)}

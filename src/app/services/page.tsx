@@ -51,7 +51,7 @@ export default function Page() {
               <div className="container relative grid gap-8 py-16 md:py-24 lg:grid-cols-12">
                 <p className="label !text-current opacity-60 lg:col-span-1">{s.no}</p>
                 <div className="lg:col-span-7">
-                  <h2 className="display text-[clamp(3.2rem,8vw,8rem)]">{s.shortName}</h2>
+                  <h2 className="display text-[clamp(3.2rem,8vw,8rem)] transition-transform duration-700 ease-out group-hover:translate-x-3">{s.shortName}</h2>
                   <p className="mt-4 text-2xl tracking-tight">{s.tagline}</p>
                   <p className={`mt-4 max-w-lg ${t.sub}`}>{s.intro}</p>
                   <ul className="mt-8 flex flex-wrap gap-2">
@@ -68,7 +68,7 @@ export default function Page() {
           <div className="container relative grid gap-8 py-16 md:py-24 lg:grid-cols-12">
             <p className="label lg:col-span-1">+</p>
             <div className="lg:col-span-7">
-              <h2 className="display text-[clamp(2.8rem,8vw,8rem)]">AI &amp; automation</h2>
+              <h2 className="display text-[clamp(2.8rem,8vw,8rem)] transition-transform duration-700 ease-out group-hover:translate-x-3">AI &amp; <em className="serif text-accent">automation</em></h2>
               <p className="mt-4 text-2xl tracking-tight">Less repetitive work. Better-connected systems.</p>
               <p className="mt-4 max-w-lg text-mute">Practical AI inside workflows you already run, with a person reviewing the output where it matters.</p>
               <span className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent underline-offset-8 group-hover:underline">See how we approach it <ArrowUpRight size={16} /></span>

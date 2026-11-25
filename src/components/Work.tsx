@@ -89,7 +89,7 @@ function Reel({ p, i }: { p: Project; i: number }) {
   );
 }
 
-export function Work() {
+export function Work({ intro = true, outro = true }: { intro?: boolean; outro?: boolean }) {
   const root = React.useRef<HTMLElement>(null);
 
   React.useLayoutEffect(() => {
@@ -115,7 +115,7 @@ export function Work() {
 
   return (
     <section id="work" ref={root} aria-labelledby="work-h" className="relative bg-obsidian">
-      <div className="container pb-8 pt-[var(--pad-section)]">
+      {intro && <div className="container pb-8 pt-[var(--pad-section)]">
         <div className="grid items-end gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <p className="label">Selected work · {String(PROJECTS.length).padStart(2, "0")} products live</p>
@@ -123,16 +123,16 @@ export function Work() {
           </div>
           <p className="lead lg:col-span-4">Products we designed, built and launched — running in production today, used by real customers.</p>
         </div>
-      </div>
+      </div>}
 
       {PROJECTS.map((p, i) => <Reel key={p.id} p={p} i={i} />)}
 
-      <div className="border-t hairline">
+      {outro && <div className="border-t hairline">
         <div className="container flex flex-wrap items-center justify-between gap-8 py-20 md:py-28">
           <p className="h2 max-w-[14ch]">Your product could be <em className="serif text-accent">next.</em></p>
           <Magnetic><Button size="lg" asChild data-cursor="Talk"><Link href="/work">All case studies <ArrowUpRight size={18} /></Link></Button></Magnetic>
         </div>
-      </div>
+      </div>}
     </section>
   );
 }

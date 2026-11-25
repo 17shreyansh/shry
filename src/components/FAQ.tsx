@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { AccentLast } from "@/components/Accent";
 import { Plus } from "lucide-react";
 import type { QA } from "@/content/faq";
 
@@ -17,7 +18,7 @@ export function FAQ({ items, title = "Questions, answered." }: { items: QA[]; ti
       <div className="container grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <p className="label">FAQ</p>
-          <h2 className="h2 mt-5 max-w-[10ch]">{title}</h2>
+          <h2 className="h2 mt-5 max-w-[10ch]"><AccentLast text={title} /></h2>
         </div>
         <div className="divide-y hairline border-y hairline lg:col-span-8">
           {items.map((it, i) => {

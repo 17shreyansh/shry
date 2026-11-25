@@ -26,6 +26,9 @@ uniform float uScroll;
 uniform float uShift;
 uniform float uIntro;
 uniform float uLift;
+uniform float uShape;
+uniform vec3 uTint;
+uniform float uDist;
 
 mat2 rot(float a){ float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }
 
@@ -38,10 +41,47 @@ float smin(float a, float b, float k){
   return mix(b, a, h) - k * h * (1.0 - h);
 }
 
+float sdTorus(vec3 p, float R, float r){ return length(vec2(length(p.xz) - R, p.y)) - r; }
+
+// 1: stacked slabs that turn against each other (build / process)
+float mapStack(vec3 p, float t){
+  float d = 1e5;
+  for (int i = 0; i < 4; i++) {
+    float fi = float(i);
+    vec3 q = p - vec3(0.0, (fi - 1.5) * 0.52, 0.0);
+    q.xz *= rot(fi * 0.42 + sin(t * 0.35 + fi * 0.9) * 0.35);
+    d = smin(d, sdRoundBox(q, vec3(0.78, 0.15, 0.78), 0.07), 0.04);
+  }
+  return d;
+}
+// 2: ring with travelling nodes around a core (connect / automation)
+float mapRing(vec3 p, float t){
+  vec3 q = p; q.yz *= rot(1.15); q.xy *= rot(0.25);
+  float d = sdTorus(q, 1.0, 0.1);
+  for (int i = 0; i < 4; i++) {
+    float a = t * (0.35 + float(i) * 0.08) + float(i) * 1.5708;
+    d = smin(d, length(q - vec3(cos(a), 0.0, sin(a))) - 0.19, 0.18);
+  }
+  return min(d, length(p) - 0.42);
+}
+// 3: gyroscope, a core inside two counter-rotating rings (operate / contact)
+float mapGyro(vec3 p, float t){
+  vec3 c = p; c.xy *= rot(t * 0.3); c.yz *= rot(t * 0.2);
+  float d = sdRoundBox(c, vec3(0.36), 0.12);
+  vec3 a = p; a.yz *= rot(t * 0.45 + 0.6);
+  d = min(d, sdTorus(a, 0.95, 0.055));
+  vec3 b = p; b.xy *= rot(t * 0.33 + 1.2); b.yz *= rot(1.5708);
+  d = min(d, sdTorus(b, 1.22, 0.055));
+  return d;
+}
+
 float map(vec3 p){
   float t = uTime;
   p.xz *= rot(t * 0.12 + uScroll * 1.4 + uMouse.x * 0.35);
   p.yz *= rot(0.18 + uMouse.y * 0.18);
+  if (uShape > 2.5) return mapGyro(p, t) * 0.9;
+  if (uShape > 1.5) return mapRing(p, t) * 0.9;
+  if (uShape > 0.5) return mapStack(p * 1.3, t) / 1.3 * 0.9;
   vec3 q = p;
   q.xz *= rot(q.y * (0.95 + 0.3 * sin(t * 0.27)));
   float d = sdRoundBox(q, vec3(0.52, 1.18, 0.52), 0.16);
@@ -59,7 +99,7 @@ vec3 normal(vec3 p){
   return normalize(e.xyy * map(p + e.xyy) + e.yyx * map(p + e.yyx) + e.yxy * map(p + e.yxy) + e.xxx * map(p + e.xxx));
 }
 
-const vec3 LIME = vec3(0.749, 0.918, 0.353);
+#define LIME uTint
 
 // Studio environment: softbox overhead, lime strip left, cool kicker right, dark floor.
 vec3 env(vec3 r){
@@ -79,7 +119,7 @@ void main(){
   vec2 uv = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;
   vec2 suv = uv - vec2(uShift, uLift);
 
-  float dolly = mix(8.6, 6.2, uScroll);
+  float dolly = mix(uDist, uDist * 0.72, uScroll);
   vec3 ro = vec3(0.0, 0.0, dolly);
   vec3 rd = normalize(vec3(suv, -2.5));
 
@@ -95,7 +135,7 @@ void main(){
     float d = map(p);
     if (d < 0.0012 * t) { hit = 1.0; break; }
     t += d;
-    if (t > 14.0) break;
+    if (t > uDist + 6.0) break;
   }
 
   if (hit > 0.5) {
@@ -132,7 +172,17 @@ function compile(gl: WebGLRenderingContext, type: number, src: string) {
   return s;
 }
 
-export function HeroScene({ className = "" }: { className?: string }) {
+export type SceneShape = "monolith" | "stack" | "ring" | "gyro";
+const SHAPES: Record<SceneShape, number> = { monolith: 0, stack: 1, ring: 2, gyro: 3 };
+
+function hexToRgb(hex: string): [number, number, number] {
+  const n = parseInt(hex.replace("#", ""), 16);
+  return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+}
+
+export function HeroScene({
+  className = "", shape = "monolith", tint = "#BFEA5A", variant = "home",
+}: { className?: string; shape?: SceneShape; tint?: string; variant?: "home" | "page" }) {
   const canvas = React.useRef<HTMLCanvasElement>(null);
   const [failed, setFailed] = React.useState(false);
 
@@ -155,6 +205,9 @@ export function HeroScene({ className = "" }: { className?: string }) {
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     const U = (n: string) => gl.getUniformLocation(prog, n);
     const uRes = U("uRes"), uTime = U("uTime"), uMouse = U("uMouse"), uScroll = U("uScroll"), uShift = U("uShift"), uIntro = U("uIntro"), uLift = U("uLift");
+    gl.uniform1f(U("uShape"), SHAPES[shape]);
+    gl.uniform3f(U("uTint"), ...hexToRgb(tint));
+    const uDist = U("uDist");
 
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const small = window.matchMedia("(max-width: 767px)").matches;
@@ -168,8 +221,11 @@ export function HeroScene({ className = "" }: { className?: string }) {
       gl.viewport(0, 0, c.width, c.height);
       gl.uniform2f(uRes, c.width, c.height);
       const aspect = w / Math.max(1, h);
-      gl.uniform1f(uShift, aspect > 1.15 ? Math.min(0.55, 0.27 * aspect) : 0.0);
-      gl.uniform1f(uLift, aspect > 1.15 ? 0.0 : 0.2);
+      const page = variant === "page";
+      // portrait screens: pull the camera back so the sculpture is framed, not cropped
+      gl.uniform1f(uDist, (page ? 10.5 : 8.6) * (aspect < 1 ? 1.55 : 1));
+      gl.uniform1f(uShift, aspect > 1.15 ? Math.min(page ? 0.62 : 0.55, (page ? 0.33 : 0.27) * aspect) : 0.0);
+      gl.uniform1f(uLift, aspect > 1.15 ? (page ? 0.04 : 0.0) : page ? 0.22 : 0.2);
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -215,12 +271,12 @@ export function HeroScene({ className = "" }: { className?: string }) {
       document.removeEventListener("visibilitychange", onVis);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, []);
+  }, [shape, tint, variant]);
 
   return (
     <div aria-hidden className={`absolute inset-0 ${className}`}>
       {/* CSS poster: visible before the first frame and when WebGL is unavailable */}
-      <div className="absolute inset-0 bg-[radial-gradient(40%_50%_at_72%_45%,rgba(191,234,90,0.12),transparent_70%),radial-gradient(80%_80%_at_50%_50%,#0c0d11,#08090b)]" />
+      <div className="absolute inset-0" style={{ background: `radial-gradient(40% 50% at 72% 45%, ${tint}1f, transparent 70%), radial-gradient(80% 80% at 50% 50%, #0c0d11, #08090b)` }} />
       {!failed && <canvas ref={canvas} className="absolute inset-0 h-full w-full" />}
     </div>
   );

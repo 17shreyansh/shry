@@ -141,7 +141,7 @@ export function Process() {
         <div className="grid items-baseline gap-6 lg:grid-cols-12">
           <p className="label lg:col-span-3">How SHRY works</p>
           <h2 id="process-heading" className="h2 max-w-[14ch] lg:col-span-9">
-            A clear path from problem to working system.
+            A clear path from problem to <em className="serif text-accent">working system.</em>
           </h2>
         </div>
 
