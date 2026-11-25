@@ -7,6 +7,7 @@ import { Cursor } from "@/components/Cursor";
 import { Preloader } from "@/components/Preloader";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { ScrollFX } from "@/components/ScrollFX";
 import { getLenis } from "@/lib/lenis";
 import { ScrollTrigger } from "@/lib/gsap";
 
@@ -31,6 +32,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <div className="grain" aria-hidden />
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[400] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-obsidian">Skip to content</a>
       <Nav />
+      <ScrollFX />
       <main id="main">{children}</main>
       <Footer />
     </>

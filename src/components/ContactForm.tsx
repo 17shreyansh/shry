@@ -38,6 +38,7 @@ const TIMELINES = [
 export function ContactForm() {
   const params = useSearchParams();
   const initialTopic = params.get("topic") ?? "";
+  const initialBrief = (params.get("brief") ?? "").slice(0, 1500);
 
   const [selectedTopic, setSelectedTopic] = React.useState("Websites & Software");
   const [selectedTimeline, setSelectedTimeline] = React.useState("1-3 Months");
@@ -47,7 +48,7 @@ export function ContactForm() {
     email: "",
     phone: "",
     company: "",
-    message: "",
+    message: initialBrief,
   });
 
   const [status, setStatus] = React.useState<Status>("idle");

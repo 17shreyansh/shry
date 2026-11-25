@@ -1,5 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { Credibility } from "@/components/Credibility";
+import { AIBlueprint } from "@/components/AIBlueprint";
 import { Work } from "@/components/Work";
 import { Services } from "@/components/Services";
 import { Process } from "@/components/Process";
@@ -17,6 +18,7 @@ export default function Page() {
     <>
       <Script src="https://cdn.leadora.in/l.js" data-site="ls_gyO7TLhGKhDHXE8B" strategy="afterInteractive" />
       <Hero />
+      <AIBlueprint />
       <Credibility />
       <Work />
       <Services />

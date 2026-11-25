@@ -81,3 +81,17 @@
 .intro-mark { position: fixed; inset: 0; z-index: 301; display: grid; place-items: center; pointer-events: none; animation: introMark 0.7s ease 0.15s forwards; }
 @keyframes introMark { to { opacity: 0; transform: scale(1.06); } }
 @media (prefers-reduced-motion: reduce) { .intro-bar, .intro-mark { display: none; } }
+
+/* AI planner: rotating light around the prompt box */
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes spinA { to { --a: 360deg; } }
+
+/* Scroll language (driven by --sv from ScrollFX): light trails on headings, elastic lean on sections */
+:root { --sv: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  main .h2, main .display {
+    text-shadow: calc(var(--sv) * 9px) 0 0 rgba(255, 46, 99, 0.42), calc(var(--sv) * -9px) 0 0 rgba(46, 204, 255, 0.42);
+  }
+  main > section:not(#top), main > article { transform: skewY(calc(var(--sv) * 0.9deg)); }
+}
+main .outline-text, main .outline-accent { text-shadow: none !important; }
