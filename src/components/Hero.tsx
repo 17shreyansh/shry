@@ -88,7 +88,7 @@ export function Hero() {
                 <p data-fade className="lead !max-w-md">Websites, apps, SaaS and AI automation — designed, built and kept running by one senior team.</p>
                 <div data-fade className="flex items-center gap-6">
                   <Magnetic><Button size="lg" asChild data-cursor="Talk"><Link href="/contact">Start a project <ArrowUpRight size={18} /></Link></Button></Magnetic>
-                  <Link href="#blueprint" className="group hidden items-center gap-2 text-[0.95rem] text-mute transition-colors hover:text-ink sm:inline-flex">Try the AI planner <ArrowDown size={16} className="transition-transform group-hover:translate-y-0.5" /></Link>
+                  <Link href="#blueprint" className="group hidden items-center gap-2 text-[0.95rem] text-mute transition-colors hover:text-ink sm:inline-flex">Plan your project <ArrowDown size={16} className="transition-transform group-hover:translate-y-0.5" /></Link>
                 </div>
               </div>
             </div>

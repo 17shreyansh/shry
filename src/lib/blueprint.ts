@@ -1,26 +1,18 @@
-import * as z from "zod/v4";
-
-/** The project blueprint shape shared by the API route, the AI model and the UI. */
-export const BlueprintSchema = z.object({
-  title: z.string().describe("Short working name for the project, 2-5 words"),
-  summary: z.string().describe("One or two plain-English sentences describing what will be built and for whom"),
-  kind: z.enum(["website", "web-app", "mobile-app", "saas", "automation", "integration"]),
-  modules: z
-    .array(z.object({ name: z.string(), description: z.string().describe("One sentence") }))
-    .describe("4 to 6 core modules or features"),
-  phases: z
-    .array(z.object({ name: z.string(), weeks: z.number().int(), deliverable: z.string() }))
-    .describe("3 or 4 delivery phases with realistic durations in weeks"),
-  stack: z.array(z.string()).describe("4 to 7 suitable technologies"),
-  ai: z.array(z.string()).describe("1 to 3 practical places AI or automation could help; empty if none make sense"),
-  questions: z.array(z.string()).describe("2 or 3 questions SHRY would ask before giving a firm quote"),
-});
-
-export type Blueprint = z.infer<typeof BlueprintSchema>;
+/** A project blueprint produced by the planner and rendered by the UI. */
+export type Blueprint = {
+  title: string;
+  summary: string;
+  kind: "website" | "web-app" | "mobile-app" | "saas" | "automation" | "integration";
+  modules: { name: string; description: string }[];
+  phases: { name: string; weeks: number; deliverable: string }[];
+  stack: string[];
+  ai: string[];
+  questions: string[];
+};
 
 /**
- * Deterministic fallback planner, used when no AI key is configured or the AI call fails.
- * Keyword-driven, so it stays sensible for common requests.
+ * Rule-based project planner: reads keywords in the idea and assembles a sensible
+ * first-draft blueprint. Runs entirely in the browser.
  */
 export function localBlueprint(idea: string): Blueprint {
   const t = idea.toLowerCase();
@@ -64,7 +56,7 @@ export function localBlueprint(idea: string): Blueprint {
   const stack = kind === "mobile-app"
     ? ["React Native", "TypeScript", "Node.js", "PostgreSQL", "Play Store & App Store"]
     : kind === "automation"
-      ? ["Node.js", "TypeScript", "WhatsApp / email APIs", "PostgreSQL", "Claude AI"]
+      ? ["Node.js", "TypeScript", "WhatsApp / email APIs", "PostgreSQL", "AI model API"]
       : kind === "website"
         ? ["Next.js", "TypeScript", "Tailwind CSS", "Headless CMS", "Vercel or VPS hosting"]
         : ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Cloud hosting"];
