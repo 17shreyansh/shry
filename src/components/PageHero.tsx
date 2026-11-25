@@ -20,7 +20,7 @@ export function PageHero({
   React.useLayoutEffect(() => {
     const mm = gsap.matchMedia(root);
     mm.add(MOTION_OK, () => {
-      gsap.timeline({ delay: boot.done ? 0.55 : 1.45, defaults: { ease: "power4.out" } })
+      gsap.timeline({ delay: boot.done ? 0.45 : 0.8, defaults: { ease: "power4.out" } })
         .from("[data-line] > span", { yPercent: 115, rotate: 2.5, duration: 1, stagger: 0.1 })
         .from("[data-fade]", { y: 20, opacity: 0, duration: 0.8, stagger: 0.08 }, "-=0.7")
         .from("[data-visual]", { opacity: 0, duration: 1.4 }, 0.2);

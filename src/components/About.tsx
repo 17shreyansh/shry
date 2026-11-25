@@ -28,7 +28,7 @@ export function About() {
       <div className="container relative">
         <p className="label">About SHRY</p>
         <h2 data-about className="display mt-8 max-w-[14ch] text-[clamp(3rem,9vw,9rem)]">
-          {"Technology should work in the real world.".split(" ").map((w, i) => <span key={i} data-w className="mr-[0.2em] inline-block">{w}</span>)}
+          {"Technology should work in the real".split(" ").map((w, i) => <span key={i} data-w className="mr-[0.2em] inline-block">{w}</span>)}<span data-w className="inline-block"><em className="serif text-accent">world.</em></span>
         </h2>
 
         <div className="mt-16 grid items-start gap-14 lg:grid-cols-12">

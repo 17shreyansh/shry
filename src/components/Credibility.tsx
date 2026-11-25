@@ -24,8 +24,8 @@ export function Credibility() {
       <div className="container py-28 md:py-44">
         <p className="label !text-obsidian/60">Approach</p>
         <p data-statement className="h2 mt-8 max-w-[16ch] !text-[clamp(2.6rem,8.4vw,8.4rem)] sm:max-w-none">
-          {STATEMENT.split(" ").map((w, i) => (
-            <span key={i} data-word className="mr-[0.22em] inline-block">{w}</span>
+          {STATEMENT.split(" ").map((w, i, all) => (
+            <span key={i} data-word className="mr-[0.22em] inline-block">{i >= all.length - 2 ? <em className="serif">{w}</em> : w}</span>
           ))}
         </p>
         <div className="mt-16 grid gap-px overflow-hidden border border-obsidian/15 bg-obsidian/15 sm:grid-cols-3">

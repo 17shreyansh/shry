@@ -42,7 +42,7 @@ export function Services() {
     <section id="services" aria-labelledby="services-h" className="bg-obsidian">
       <div className="container pb-14 pt-[var(--pad-section)]">
         <p className="label">What SHRY does</p>
-        <h2 id="services-h" className="h2 mt-6 max-w-[18ch]">Websites, integrations and ongoing support — one technology partner.</h2>
+        <h2 id="services-h" className="h2 mt-6 max-w-[18ch]">Build it, connect it, <em className="serif text-accent">keep it running.</em></h2>
       </div>
 
       <div className="flex flex-col lg:h-[82vh] lg:min-h-[34rem] lg:flex-row">

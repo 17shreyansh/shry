@@ -58,11 +58,14 @@ export type Project = {
   mobile?: string;
   /** Long-form overview paragraphs for the case study. */
   story?: string[];
+  /** Brand colour of the product, used for cinematic lighting around its screenshots. */
+  tint?: string;
 };
 
 export const PROJECTS: Project[] = [
   {
     id: "mycloudpg",
+    tint: "#1fa2ff",
     name: "MyCloudPG",
     kind: "Accommodation management",
     platform: "Web application",
@@ -90,6 +93,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "nirmanveda",
+    tint: "#9b4dff",
     name: "Nirmanveda",
     kind: "Construction-materials marketplace",
     platform: "Android · iOS · Website",
@@ -137,6 +141,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "leadora",
+    tint: "#5b5bff",
     name: "Leadora",
     kind: "SaaS · Website growth toolkit",
     platform: "SaaS platform",

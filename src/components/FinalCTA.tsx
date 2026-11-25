@@ -30,7 +30,7 @@ export function FinalCTA() {
       <div ref={flood} className="bg-bone text-obsidian">
         <div className="container flex min-h-[100svh] flex-col justify-center py-28">
           <p data-cta className="label !text-obsidian/65">Start a conversation</p>
-          <h2 id="cta-h" data-cta className="display mt-8 text-[clamp(3.4rem,12.5vw,13rem)]">Have something important to build?</h2>
+          <h2 id="cta-h" data-cta className="display mt-8 text-[clamp(3.4rem,12.5vw,13rem)]">Have something <em className="serif">important</em> to build?</h2>
           <div className="mt-12 flex flex-wrap items-center justify-between gap-8">
             <p data-cta className="max-w-md text-xl leading-snug tracking-tight text-obsidian/80">Tell us what your business needs. We'll help you understand the right technical approach.</p>
             <div data-cta>
